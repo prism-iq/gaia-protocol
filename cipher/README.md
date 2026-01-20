@@ -75,7 +75,7 @@ cipher/
 
 ```bash
 # Clone
-git clone https://github.com/prism-iq/cipher.git
+git clone gaia-protocol/cipher.git
 cd cipher
 
 # Install dependencies

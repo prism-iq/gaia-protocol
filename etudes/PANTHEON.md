@@ -3,20 +3,23 @@
 ## Rôle dans le Panthéon
 **Etudes** - Sources, recherche, apprentissage
 
-## Repos Frères
-| Dieu | Repo | Rôle |
-|------|------|------|
-| Nyx | `prism-iq/nyx` | Daemon du feu, protection |
-| Cipher | `prism-iq/cipher` | Système cognitif, CLI |
-| Flow | `prism-iq/flow-phoenix` | L'âme, agents, API |
-| Ear | `prism-iq/ear-to-code` | Perception vision/audio |
-| Zoe | `prism-iq/zoe` | Interface web vivante |
-| Vulga | `prism-iq/vulga` | Scripts utilitaires |
-| Etudes | `prism-iq/etudes` | Sources et recherche |
-| Spec | `prism-iq/good-girl` | Specs, éthique |
+## Modules Frères (gaia-protocol/)
+| Entité | Module | Rôle |
+|--------|--------|------|
+| Nyx | `nyx/` | Daemon du feu, protection |
+| Cipher | `cipher/` | Système cognitif, 6 domaines |
+| Flow | `lang/` | Langage Flow (Go → C++) |
+| Phoenix | `phoenix/` | Runtime vivant, heartbeat |
+| Ear | `ear/` | Perception vision/audio |
+| Zoe | `zoe/` | Interface web vivante |
+| Vulga | `vulga/` | Scripts utilitaires |
+| Etudes | `etudes/` | Sources et recherche |
+| Spec | `spec/` | Specs, éthique |
+| Geass | `geass/` | Leonardo, validation φ |
+| Corps | `corps/` | 8 organes polyglot |
 
 ## Projet Unifié
-`prism-iq/pantheon`
+`gaia-protocol` - Architecture unifiée
 
 ## Sources
 - `sources.py` - Agrégateur de sources

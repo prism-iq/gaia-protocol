@@ -616,7 +616,7 @@ cat /opt/rag/mind/system_prompt.md | grep "Anti-Pattern"
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/prism-iq/pwnd.git
+git clone gaia-protocol/nyx/pwnd.git
 cd pwnd
 
 # 2. Install dependencies

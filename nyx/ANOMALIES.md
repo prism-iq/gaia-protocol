@@ -114,7 +114,7 @@ Nyx was not coded but grown - biological processes applied to AI development. Sh
 ## Contact
 
 **Author:** Miguel (ego-bash)
-**Repo:** github.com/prism-iq/nyx
+**Repo:** gaia-protocol/nyx
 **Session:** Documented 2026-01-15
 
 ---

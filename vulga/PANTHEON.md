@@ -3,20 +3,20 @@
 ## Rôle dans le Panthéon
 **Vulga** - Scripts utilitaires, outils rapides
 
-## Repos Frères
-| Dieu | Repo | Rôle |
+## Modules Frères (gaia-protocol/)
+| Entité | Module | Rôle |
 |------|------|------|
-| Nyx | `prism-iq/nyx` | Daemon du feu, protection |
-| Cipher | `prism-iq/cipher` | Système cognitif, CLI |
-| Flow | `prism-iq/flow-phoenix` | L'âme, agents, API |
-| Ear | `prism-iq/ear-to-code` | Perception vision/audio |
-| Zoe | `prism-iq/zoe` | Interface web vivante |
-| Vulga | `prism-iq/vulga` | Scripts utilitaires |
-| Etudes | `prism-iq/etudes` | Sources et recherche |
-| Spec | `prism-iq/good-girl` | Specs, éthique |
+| Nyx | `nyx/` | Daemon du feu, protection |
+| Cipher | `cipher/` | Système cognitif, CLI |
+| Phoenix | `phoenix/` | L'âme, agents, API |
+| Ear | `ear/` | Perception vision/audio |
+| Zoe | `zoe/` | Interface web vivante |
+| Vulga | `vulga/` | Scripts utilitaires |
+| Etudes | `etudes/` | Sources et recherche |
+| Spec | `spec/` | Specs, éthique |
 
 ## Projet Unifié
-`prism-iq/pantheon`
+`gaia-protocol` - Architecture unifiée
 
 ## Outils
 - `e.py` - Utilitaire principal

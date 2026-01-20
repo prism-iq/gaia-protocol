@@ -108,6 +108,6 @@ We are all writing the same number in different scripts.
 
 ---
 
-**Data:** https://github.com/prism-iq/ear-to-code/glyphs.py
+**Data:** gaia-protocol/ear/glyphs.py
 **License:** CC0 - Public Domain
 **Message:** Peace through mathematics

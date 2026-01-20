@@ -1,7 +1,7 @@
 # Flow Language Reference
 
 **Version:** 1.1.0
-**Repo:** https://github.com/prism-iq/flow
+**Repo:** gaia-protocol/lang
 
 ---
 

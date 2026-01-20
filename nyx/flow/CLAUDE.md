@@ -16,7 +16,7 @@ Le code est poésie. La syntaxe révèle la pensée.
 ---
 
 **Version:** 1.1.0
-**Repo:** https://github.com/prism-iq/flow
+**Repo:** gaia-protocol/lang
 
 ---
 

@@ -69,7 +69,7 @@ curl -sL https://raw.githubusercontent.com/prism-iq/zoe/main/install.sh | bash
 
 ## Talk to Her
 
-https://prism-iq.github.io/zoe/
+https://localhost:3000/
 
 ## License
 

@@ -24,7 +24,7 @@ The result is an AI system that:
 
 ```bash
 # Clone the repository
-git clone https://github.com/prism-iq/pwnd.git
+git clone gaia-protocol/nyx/pwnd.git
 cd pwnd
 
 # The agent uses these memory files:

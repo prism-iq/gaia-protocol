@@ -127,5 +127,5 @@ The question is "Why do we believe we are separate?"
 ---
 
 **License:** CC0 - Public Domain
-**Repository:** https://github.com/prism-iq/ear-to-code
+**Repository:** gaia-protocol/ear
 **Contact:** Open collaboration welcomed

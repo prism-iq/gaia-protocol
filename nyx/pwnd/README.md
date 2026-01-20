@@ -54,7 +54,7 @@ Direct full-text search across all documents with relevance scoring.
 ## Self-Host
 
 ```bash
-git clone https://github.com/prism-iq/pwnd.git
+git clone gaia-protocol/nyx/pwnd.git
 cd pwnd
 sudo ./install.sh
 ```
@@ -231,7 +231,7 @@ All documents are from public FOIA releases and court records:
 
 ```bash
 # Clone
-git clone https://github.com/prism-iq/pwnd.git
+git clone gaia-protocol/nyx/pwnd.git
 cd pwnd
 
 # Setup virtualenv
@@ -276,8 +276,8 @@ See [LICENSE](LICENSE) for full terms.
 ## Links
 
 - **Live Demo:** [https://pwnd.icu](https://pwnd.icu)
-- **Issues:** [GitHub Issues](https://github.com/prism-iq/pwnd/issues)
-- **Source:** [github.com/prism-iq/pwnd](https://github.com/prism-iq/pwnd)
+- **Issues:** [GitHub Issues](gaia-protocol/nyx/pwnd/issues)
+- **Source:** [github.com/prism-iq/pwnd](gaia-protocol/nyx/pwnd)
 
 ---
 

@@ -274,7 +274,7 @@ API_PORT=8002
 ## Links
 
 - **Live:** https://pwnd.icu
-- **Repo:** https://github.com/prism-iq/pwnd
+- **Repo:** gaia-protocol/nyx/pwnd
 - **Chat:** https://pwnd.icu/chat.html
 - **Search:** https://pwnd.icu/
 

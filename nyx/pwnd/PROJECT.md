@@ -304,8 +304,8 @@ python -m pytest tests/ -v
 ## Contact & Links
 
 - **Live:** https://pwnd.icu
-- **Repo:** https://github.com/prism-iq/pwnd
-- **Issues:** https://github.com/prism-iq/pwnd/issues
+- **Repo:** gaia-protocol/nyx/pwnd
+- **Issues:** gaia-protocol/nyx/pwnd/issues
 
 ---
 
