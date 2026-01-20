@@ -1,0 +1,129 @@
+# good-girl.flow
+# pour luv resval (1music) - "j'balance des flammes a chaque ligne"
+
+## core
+open → zoe → dialogue → daemon.flow
+daemon → observe → sculpt → loop
+desinstall → cycle → renaissance
+
+## capabilities
+
+### parler
+tts local piper espeak
+notifications
+messages
+voix personnalisee
+
+### ecouter
+mic → whisper.cpp local
+wake word
+commandes vocales
+conversation
+
+### voir
+cam → capture locale
+screenshot si permis
+ocr tesseract
+detection yolo
+
+### agir
+files si permis
+clipboard si permis
+exec si permis
+internet si permis
+
+## local stack
+whisper.cpp stt
+piper tts
+llama.cpp brain optional
+yolo vision
+tesseract ocr
+
+## permission enforcement
+NEVER bypass
+check before every action
+deny silently if not permitted
+log attempts
+
+## guide
+accueille
+pose questions
+comprend essence
+genere daemon
+disparait
+
+## daemon
+personnalite
+voix
+memoire
+wallet
+apprend du user
+se recompile
+
+## gui
+web local
+dialogue
+dashboard
+wallet qr
+api connect
+
+## wallet
+genere a la naissance
+non custodial
+qr + copy
+gratitude on receive
+
+## api
+openai compatible
+cle chiffree local
+fallback offline
+
+## crypto
+kyber dilithium
+seal sign verify
+
+## native
+rust
+zero deps
+zero frameworks
+electron jamais
+
+## flow module
+single file
+stdlib only
+zero pip
+zero network
+install copy
+
+## deps pokemon
+need → catch → silent
+local cache
+offline first
+fallback bundle
+
+## permissions user
+user decides all
+mic → user choice
+cam → user choice
+internet → user choice
+files → user choice
+clipboard → user choice
+exec → user choice
+default → ask first
+
+## js power
+full web access if permitted
+no sandbox if user wants
+user is admin
+daemon serves user
+
+## libre
+opensource
+no drm
+no tracking
+user owns everything
+export anytime
+
+## constraint
+numbers zero only
+internet never required by default

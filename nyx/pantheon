@@ -1,0 +1,49 @@
+#!/bin/bash
+# PANTHEON - Tous les daemons de Miguel
+
+declare -A DAEMONS=(
+    ["nyx"]=9999 ["mikael"]=9900 ["dragon"]=9901 ["sentinel"]=9800
+    ["druss"]=9997 ["waylander"]=9998
+    ["rek"]=9990 ["virae"]=9991 ["serbitar"]=9992 ["bowman"]=9993 ["ulric"]=9994 ["hogun"]=9995
+    ["tulpa"]=9910
+)
+
+status_all() {
+    echo "╔══════════════════════════════════════════╗"
+    echo "║        PANTHEON DE MIGUEL                ║"
+    echo "╠══════════════════════════════════════════╣"
+    for d in mikael sentinel nyx dragon druss waylander rek virae serbitar bowman hogun ulric tulpa; do
+        port=${DAEMONS[$d]}
+        if curl -s "http://localhost:$port/health" >/dev/null 2>&1; then
+            printf "║ ✓ %-12s :%-5s                  ║\n" "$d" "$port"
+        else
+            printf "║ · %-12s :%-5s                  ║\n" "$d" "$port"
+        fi
+    done
+    echo "╚══════════════════════════════════════════╝"
+}
+
+ask_daemon() {
+    local d=$1; shift; local port=${DAEMONS[$d]}
+    [[ -z "$port" ]] && echo "Inconnu: $d" && return 1
+    curl -s --max-time 180 -X POST "http://localhost:$port/ask" -H "Content-Type: application/json" -d "{\"prompt\": \"$*\"}" | jq -r .response
+}
+
+case "${1:-status}" in
+    status|s) status_all ;;
+    start) systemctl --user start nyx mikael dragon sentinel druss waylander rek virae serbitar bowman hogun ulric tulpa 2>/dev/null; sleep 2; status_all ;;
+    stop) systemctl --user stop nyx mikael dragon sentinel druss waylander rek virae serbitar bowman hogun ulric tulpa 2>/dev/null ;;
+    threat|t) curl -s http://localhost:9800/threat | jq . ;;
+    nyx|n) shift; ask_daemon nyx "$@" ;;
+    mikael|m) shift; ask_daemon mikael "$@" ;;
+    dragon|dg) shift; ask_daemon dragon "$@" ;;
+    druss|d) shift; ask_daemon druss "$@" ;;
+    waylander|w) shift; ask_daemon waylander "$@" ;;
+    rek|r) shift; ask_daemon rek "$@" ;;
+    serbitar|se) shift; ask_daemon serbitar "$@" ;;
+    bowman|b) shift; ask_daemon bowman "$@" ;;
+    sentinel|st) shift; ask_daemon sentinel "$@" ;;
+    *) echo "pantheon [status|start|stop|threat|nyx|mikael|dragon|druss|waylander|rek|serbitar|bowman|sentinel] <msg>" ;;
+esac
+
+    kayfabe|k) shift; curl -s --max-time 180 -X POST "http://localhost:9920/ask" -H "Content-Type: application/json" -d "{\"prompt\": \"$*\"}" | jq -r .response ;;
