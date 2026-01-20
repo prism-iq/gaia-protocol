@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAIA Protocol - Zoe Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0a0a0f;
+            --surface: #12121a;
+            --border: #1e1e2e;
+            --text: #e0e0e0;
+            --text-dim: #666;
+            --accent: #7c3aed;
+            --green: #22c55e;
+            --red: #ef4444;
+            --yellow: #eab308;
+            --phi: 1.618;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            font-weight: 300;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .phi {
+            color: var(--yellow);
+            font-size: 20px;
+        }
+
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--green);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.offline {
+            background: var(--red);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 16px;
+        }
+
+        .card-title .symbol {
+            font-size: 20px;
+        }
+
+        .daemon-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--green);
+        }
+
+        .daemon-status.offline {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--red);
+        }
+
+        .daemon-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            font-size: 13px;
+            color: var(--text-dim);
+        }
+
+        .daemon-info span {
+            color: var(--text);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            flex: 1;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            background: var(--border);
+        }
+
+        button.primary {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        button.primary:hover {
+            background: #6d28d9;
+        }
+
+        button.danger {
+            border-color: var(--red);
+            color: var(--red);
+        }
+
+        button.danger:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .chat-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            font-size: 14px;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            padding: 10px 15px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: var(--accent);
+            margin-left: auto;
+        }
+
+        .message.system {
+            background: var(--border);
+        }
+
+        .message.leonardo {
+            background: rgba(234, 179, 8, 0.1);
+            border-left: 3px solid var(--yellow);
+        }
+
+        .message .sender {
+            font-size: 11px;
+            color: var(--text-dim);
+            margin-bottom: 5px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: var(--bg);
+            color: var(--text);
+            font-family: inherit;
+            font-size: 14px;
+        }
+
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .logs-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .logs-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logs-content {
+            height: 200px;
+            overflow-y: auto;
+            padding: 15px 20px;
+            font-size: 12px;
+            color: var(--text-dim);
+            white-space: pre-wrap;
+            font-family: monospace;
+        }
+
+        .log-entry {
+            margin-bottom: 5px;
+        }
+
+        .log-entry .time {
+            color: var(--text-dim);
+        }
+
+        .log-entry .daemon {
+            color: var(--accent);
+        }
+
+        .log-entry.error {
+            color: var(--red);
+        }
+
+        .log-entry.success {
+            color: var(--green);
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .quick-actions button {
+            flex: none;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="phi">φ</span>
+                <h1>GAIA <span>Protocol</span></h1>
+            </div>
+            <div class="status-indicator">
+                <div class="status-dot" id="globalStatus"></div>
+                <span id="globalStatusText">Checking...</span>
+            </div>
+        </header>
+
+        <div class="quick-actions">
+            <button class="primary" onclick="startAll()">Start All</button>
+            <button class="danger" onclick="stopAll()">Stop All</button>
+            <button onclick="refreshStatus()">Refresh</button>
+        </div>
+
+        <div class="grid">
+            <div class="card" id="leonardo-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="symbol">φ</span>
+                        <span>Leonardo</span>
+                    </div>
+                    <div class="daemon-status" id="leonardo-status">
+                        <div class="status-dot"></div>
+                        <span>checking</span>
+                    </div>
+                </div>
+                <div class="daemon-info">
+                    <div>Port: <span>9600</span></div>
+                    <div>Socket: <span>/tmp/geass/</span></div>
+                    <div>Role: <span>φ Validation</span></div>
+                    <div>PID: <span id="leonardo-pid">-</span></div>
+                </div>
+                <div class="actions">
+                    <button onclick="validatePhi()">Validate φ</button>
+                    <button onclick="askLeonardo()">Ask</button>
+                </div>
+            </div>
+
+            <div class="card" id="phoenix-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="symbol">🦅</span>
+                        <span>Phoenix</span>
+                    </div>
+                    <div class="daemon-status" id="phoenix-status">
+                        <div class="status-dot"></div>
+                        <span>checking</span>
+                    </div>
+                </div>
+                <div class="daemon-info">
+                    <div>Port: <span>3666</span></div>
+                    <div>API: <span>REST/HTTP</span></div>
+                    <div>Role: <span>Living Runtime</span></div>
+                    <div>PID: <span id="phoenix-pid">-</span></div>
+                </div>
+                <div class="actions">
+                    <button onclick="phoenixStatus()">Status</button>
+                    <button onclick="phoenixDream()">Dream</button>
+                </div>
+            </div>
+
+            <div class="card" id="zoe-card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <span class="symbol">✧</span>
+                        <span>Zoe</span>
+                    </div>
+                    <div class="daemon-status online" id="zoe-status">
+                        <div class="status-dot"></div>
+                        <span>online</span>
+                    </div>
+                </div>
+                <div class="daemon-info">
+                    <div>Port: <span>3000</span></div>
+                    <div>Type: <span>Web Interface</span></div>
+                    <div>Role: <span>Dashboard</span></div>
+                    <div>Mode: <span>Active</span></div>
+                </div>
+                <div class="actions">
+                    <button onclick="window.location='chat.html'">Chat</button>
+                    <button onclick="window.location='new.html'">Canvas</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-section">
+            <div class="chat-header">
+                Chat - Talk to GAIA
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message system">
+                    <div class="sender">System</div>
+                    GAIA Protocol initialized. Type a message or command.
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="chatInput" placeholder="Type a message..." onkeypress="handleChatKey(event)">
+                <button class="primary" onclick="sendChat()">Send</button>
+            </div>
+        </div>
+
+        <div class="logs-section">
+            <div class="logs-header">
+                <span>System Logs</span>
+                <button onclick="clearLogs()">Clear</button>
+            </div>
+            <div class="logs-content" id="logsContent">
+                <div class="log-entry">
+                    <span class="time">[--:--:--]</span>
+                    <span class="daemon">[GAIA]</span>
+                    Dashboard loaded
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const PHI = 1.618033988749895;
+        const PHOENIX_URL = 'http://localhost:3666';
+
+        // State
+        let daemons = {
+            leonardo: { alive: false, pid: null },
+            phoenix: { alive: false, pid: null },
+            zoe: { alive: true, pid: null }
+        };
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            log('Dashboard initialized', 'GAIA');
+            refreshStatus();
+            setInterval(refreshStatus, 5000);
+        });
+
+        // Logging
+        function log(message, daemon = 'GAIA', type = '') {
+            const logsContent = document.getElementById('logsContent');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.innerHTML = `<span class="time">[${time}]</span> <span class="daemon">[${daemon}]</span> ${message}`;
+            logsContent.appendChild(entry);
+            logsContent.scrollTop = logsContent.scrollHeight;
+        }
+
+        function clearLogs() {
+            document.getElementById('logsContent').innerHTML = '';
+            log('Logs cleared', 'GAIA');
+        }
+
+        // Status checking
+        async function refreshStatus() {
+            // Check Phoenix
+            try {
+                const response = await fetch(`${PHOENIX_URL}/status`, {
+                    method: 'GET',
+                    mode: 'cors'
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    updateDaemonStatus('phoenix', true, data.pid);
+                } else {
+                    updateDaemonStatus('phoenix', false);
+                }
+            } catch (e) {
+                updateDaemonStatus('phoenix', false);
+            }
+
+            // Leonardo check via Phoenix proxy or direct
+            try {
+                const response = await fetch(`${PHOENIX_URL}/leonardo/status`);
+                if (response.ok) {
+                    updateDaemonStatus('leonardo', true);
+                } else {
+                    updateDaemonStatus('leonardo', false);
+                }
+            } catch (e) {
+                // Try to infer from Phoenix
+                updateDaemonStatus('leonardo', false);
+            }
+
+            // Update global status
+            updateGlobalStatus();
+        }
+
+        function updateDaemonStatus(name, alive, pid = null) {
+            daemons[name].alive = alive;
+            daemons[name].pid = pid;
+
+            const statusEl = document.getElementById(`${name}-status`);
+            const pidEl = document.getElementById(`${name}-pid`);
+
+            if (statusEl) {
+                statusEl.className = `daemon-status ${alive ? '' : 'offline'}`;
+                statusEl.querySelector('span').textContent = alive ? 'online' : 'offline';
+            }
+
+            if (pidEl) {
+                pidEl.textContent = pid || '-';
+            }
+        }
+
+        function updateGlobalStatus() {
+            const allAlive = Object.values(daemons).every(d => d.alive);
+            const someAlive = Object.values(daemons).some(d => d.alive);
+
+            const dot = document.getElementById('globalStatus');
+            const text = document.getElementById('globalStatusText');
+
+            if (allAlive) {
+                dot.className = 'status-dot';
+                text.textContent = 'All Systems Operational';
+            } else if (someAlive) {
+                dot.className = 'status-dot';
+                dot.style.background = 'var(--yellow)';
+                text.textContent = 'Partial';
+            } else {
+                dot.className = 'status-dot offline';
+                text.textContent = 'Offline';
+            }
+        }
+
+        // Actions
+        async function startAll() {
+            log('Starting all daemons...', 'GAIA');
+            addChatMessage('Starting all daemons...', 'system');
+            // This would need a backend API - for now just log
+            log('Run: python gaia.py start', 'GAIA');
+            addChatMessage('Run in terminal: python gaia.py start', 'system');
+        }
+
+        async function stopAll() {
+            log('Stopping all daemons...', 'GAIA');
+            addChatMessage('Run in terminal: python gaia.py stop', 'system');
+        }
+
+        // Phoenix actions
+        async function phoenixStatus() {
+            try {
+                const response = await fetch(`${PHOENIX_URL}/status`);
+                const data = await response.json();
+                log(JSON.stringify(data, null, 2), 'Phoenix');
+                addChatMessage(`Phoenix Status:\n${JSON.stringify(data, null, 2)}`, 'system');
+            } catch (e) {
+                log('Phoenix offline', 'Phoenix', 'error');
+                addChatMessage('Phoenix is offline', 'system');
+            }
+        }
+
+        async function phoenixDream() {
+            try {
+                const response = await fetch(`${PHOENIX_URL}/dream`, { method: 'POST' });
+                const data = await response.json();
+                log('Dream generated', 'Phoenix', 'success');
+                addChatMessage(`Dream: ${data.dream || 'Generated'}`, 'system');
+            } catch (e) {
+                log('Failed to dream', 'Phoenix', 'error');
+            }
+        }
+
+        // Leonardo actions
+        function validatePhi() {
+            const input = prompt('Enter text to validate with φ:');
+            if (input) {
+                // Local phi validation
+                const words = input.split(' ').length;
+                const letters = input.replace(/\s/g, '').length;
+                const ratio = letters / words;
+                const distance = Math.abs(ratio - PHI);
+                const valid = distance < 1.0;
+
+                const result = {
+                    valid,
+                    ratio: ratio.toFixed(3),
+                    phi_distance: distance.toFixed(3),
+                    symbol: valid ? 'φ' : '?'
+                };
+
+                log(`Validation: ${JSON.stringify(result)}`, 'Leonardo');
+                addChatMessage(`φ Validation:\nRatio: ${result.ratio}\nDistance to φ: ${result.phi_distance}\nValid: ${result.valid ? 'Yes' : 'No'}`, 'leonardo');
+            }
+        }
+
+        function askLeonardo() {
+            const question = prompt('Ask Leonardo:');
+            if (question) {
+                // Local Leonardo wisdom
+                const pensees = [
+                    "La simplicité est la sophistication suprême.",
+                    "La nature est le meilleur professeur.",
+                    "L'expérience ne se trompe jamais.",
+                    "Qui pense peu se trompe beaucoup.",
+                    "L'apprentissage ne fatigue jamais l'esprit."
+                ];
+                const pensee = pensees[Math.floor(Math.random() * pensees.length)];
+                addChatMessage(pensee, 'leonardo');
+                log(pensee, 'Leonardo');
+            }
+        }
+
+        // Chat
+        function addChatMessage(text, type = 'user') {
+            const messages = document.getElementById('chatMessages');
+            const msg = document.createElement('div');
+            msg.className = `message ${type}`;
+
+            let sender = 'You';
+            if (type === 'system') sender = 'System';
+            if (type === 'leonardo') sender = 'φ Leonardo';
+
+            msg.innerHTML = `<div class="sender">${sender}</div>${text.replace(/\n/g, '<br>')}`;
+            messages.appendChild(msg);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function handleChatKey(event) {
+            if (event.key === 'Enter') {
+                sendChat();
+            }
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if (!text) return;
+
+            addChatMessage(text, 'user');
+            input.value = '';
+
+            // Try to send to Phoenix
+            try {
+                const response = await fetch(`${PHOENIX_URL}/chat`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    addChatMessage(data.response || data.message || 'OK', 'system');
+                } else {
+                    // Fallback to local
+                    localChat(text);
+                }
+            } catch (e) {
+                localChat(text);
+            }
+        }
+
+        function localChat(text) {
+            const lower = text.toLowerCase();
+
+            if (lower.includes('phi') || lower.includes('φ')) {
+                addChatMessage(`φ = ${PHI}\nLe nombre d'or gouverne l'harmonie.`, 'leonardo');
+            } else if (lower.includes('status')) {
+                refreshStatus();
+                addChatMessage('Status refreshed.', 'system');
+            } else if (lower.includes('help')) {
+                addChatMessage('Commands: status, phi, help, start, stop', 'system');
+            } else {
+                addChatMessage('Phoenix offline. Message queued.', 'system');
+            }
+        }
+    </script>
+</body>
+</html>
