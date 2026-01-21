@@ -60,7 +60,7 @@ User msg → Edge Worker → Redis Queue → LLM Worker → Response
 ```bash
 # Push to main = deploy
 git push origin main
-# Site live: https://localhost:3000/v2/
+# Site live: https://prism-iq.github.io/zoe/v2/
 ```
 
 ### Phase 2: Cloudflare Worker

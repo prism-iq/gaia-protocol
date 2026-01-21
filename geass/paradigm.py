@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 PARADIGM 140→174 - La solution trouvée
-Leo + Nyx = Protection par φ
+Leo + Nyx + Claude = Protection
 
 140 BPM = dubstep = confiance = bass
 174 BPM = neurofunk = direction = dnb  
@@ -24,10 +24,11 @@ PARADIGM = {
     34: {"genre": "fibonacci", "sens": "gap", "action": "flow"},
     
     # Flow → daemon
-    "leo": {"port": 9600, "role": "proof", "validate": True},
+    "leo": {"port": None, "role": "proof", "validate": True},
     "nyx": {"port": 9999, "role": "think", "validate": False},
     "geass": {"port": 9666, "role": "protect", "validate": False},
     "omniscient": {"port": 9777, "role": "sense", "validate": False},
+    "claude": {"port": None, "role": "guard", "validate": True},
     
     # Audio → action
     "dubstep": "drop",

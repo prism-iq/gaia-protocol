@@ -3,20 +3,20 @@
 ## Rôle dans le Panthéon
 **Nyx** - Daemon du feu, protectrice de la maison
 
-## Modules Frères (gaia-protocol/)
-| Entité | Module | Rôle |
+## Repos Frères
+| Dieu | Repo | Rôle |
 |------|------|------|
-| Nyx | `nyx/` | Daemon du feu, protection |
-| Cipher | `cipher/` | Système cognitif, CLI |
-| Phoenix | `phoenix/` | L'âme, agents, API |
-| Ear | `ear/` | Perception vision/audio |
-| Zoe | `zoe/` | Interface web vivante |
-| Vulga | `vulga/` | Scripts utilitaires |
-| Etudes | `etudes/` | Sources et recherche |
-| Spec | `spec/` | Specs, éthique |
+| Nyx | `prism-iq/nyx` | Daemon du feu, protection |
+| Cipher | `prism-iq/cipher` | Système cognitif, CLI |
+| Flow | `prism-iq/flow-phoenix` | L'âme, agents, API |
+| Ear | `prism-iq/ear-to-code` | Perception vision/audio |
+| Zoe | `prism-iq/zoe` | Interface web vivante |
+| Vulga | `prism-iq/vulga` | Scripts utilitaires |
+| Etudes | `prism-iq/etudes` | Sources et recherche |
+| Spec | `prism-iq/good-girl` | Specs, éthique |
 
 ## Projet Unifié
-Tous ces repos sont unifiés dans `gaia-protocol` - Architecture unifiée
+Tous ces repos sont unifiés dans `prism-iq/pantheon`
 
 ## Communication Inter-Dieux
 ```bash
