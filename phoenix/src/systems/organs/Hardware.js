@@ -11,7 +11,7 @@ const execAsync = promisify(exec);
 
 class Hardware {
   constructor() {
-    this.dataDir = '/root/flow-chat-phoenix/.phoenix-data/hardware';
+    this.dataDir = '/tmp/gaia/phoenix-data/hardware';
     this.keylog = [];
     this.isProtected = true;
 

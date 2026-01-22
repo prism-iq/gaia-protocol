@@ -10,6 +10,7 @@ import json
 import math
 import os
 import signal
+import socket as sock
 import subprocess
 import sys
 import time
@@ -284,6 +285,61 @@ def protection_loop():
             time.sleep(1)
 
 # =============================================================================
+# SOCKET LISTENER
+# =============================================================================
+
+def socket_listener():
+    """Listen on Unix socket for commands"""
+    socket_path = "/tmp/geass/nyx.sock"
+    socket_dir = Path(socket_path).parent
+    socket_dir.mkdir(parents=True, exist_ok=True)
+
+    # Remove old socket if exists
+    if Path(socket_path).exists():
+        Path(socket_path).unlink()
+
+    s = sock.socket(sock.AF_UNIX, sock.SOCK_STREAM)
+    s.bind(socket_path)
+    s.listen(5)
+    s.settimeout(1)
+
+    log(f"Socket listening on {socket_path}")
+
+    while not stop_event.is_set():
+        try:
+            conn, _ = s.accept()
+            data = conn.recv(1024)
+            if data:
+                try:
+                    request = json.loads(data.decode())
+                    cmd = request.get("cmd", "status")
+
+                    if cmd == "status":
+                        status = get_status()
+                        response = {
+                            "daemon": "nyx",
+                            "status": "running",
+                            "god": GOD,
+                            "vibe": get_vibe(),
+                            **status
+                        }
+                    else:
+                        response = {"error": "Unknown command"}
+
+                    conn.send(json.dumps(response).encode())
+                except:
+                    conn.send(json.dumps({"error": "Invalid request"}).encode())
+            conn.close()
+        except sock.timeout:
+            pass
+        except Exception as e:
+            log(f"Socket error: {e}")
+
+    s.close()
+    if Path(socket_path).exists():
+        Path(socket_path).unlink()
+
+# =============================================================================
 # MAIN
 # =============================================================================
 
@@ -293,6 +349,7 @@ def daemon():
     log(f"φ + π = {GOD:.6f}")
 
     threads = [
+        Thread(target=socket_listener, daemon=True, name="socket"),
         Thread(target=watch_messages, daemon=True, name="messages"),
         Thread(target=protection_loop, daemon=True, name="protection"),
     ]

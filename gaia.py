@@ -31,6 +31,7 @@ GAIA_ROOT = Path(__file__).parent
 GEASS_DIR = GAIA_ROOT / "geass"
 PHOENIX_DIR = GAIA_ROOT / "phoenix"
 ZOE_DIR = GAIA_ROOT / "zoe"
+NYX_DIR = GAIA_ROOT / "nyx"
 PID_DIR = Path("/tmp/gaia")
 LOG_DIR = Path("/tmp/gaia/logs")
 
@@ -63,6 +64,14 @@ DAEMONS = {
         "cwd": str(ZOE_DIR),
         "check": "http",
         "url": "http://localhost:3000/"
+    },
+    "nyx": {
+        "name": "Nyx",
+        "symbol": "☽",
+        "port": 9999,
+        "cmd": ["python3", str(NYX_DIR / "core.py"), "daemon"],
+        "check": "socket",
+        "socket": "/tmp/geass/nyx.sock"
     }
 }
 
