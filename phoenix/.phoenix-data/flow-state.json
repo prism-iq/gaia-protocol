@@ -1,0 +1,66 @@
+{
+  "memories": [
+    {
+      "type": "dream",
+      "id": "dream-1769120954172",
+      "ts": 1769120954172
+    },
+    {
+      "type": "read",
+      "path": "/home/flow/projects/gaia/phoenix/src/systems/flow-pure.js",
+      "ts": 1769120984178
+    },
+    {
+      "type": "fetch",
+      "url": "https://news.ycombinator.com",
+      "ts": 1769121014854
+    },
+    {
+      "type": "bash",
+      "cmd": "ls -la",
+      "output": "total 28\ndrwxr-xr-x 1 flow flow   220 22 janv. 23:30 .\ndrwxr-xr-x 1 flow flow    18 22 janv. 23:25 ..\ndrwxr-xr-x 1 flow flow   598 21 janv. 17:25 cipher\ndrwxr-xr-x 1 flow flow  1174 20 janv. 12:37 corps\ndrwxr-xr-x 1 flow flow   112 20 janv. 12:37 css\ndrwxr-xr-x 1 flow flow  1400 20 janv. 12:37 ear\ndrwxr-xr-x 1 flow flow   730 20 janv. 12:37 etudes\n-rwxr-xr-x 1 flow flow 11285 22 janv. 23:30 gaia.py\ndrwxr-xr-x 1 flow flow   364 21 janv. 17:58 geass\ndrwxr-xr-x 1 flow flow   150 21 janv. 17:32 .git",
+      "ts": 1769121044190
+    },
+    {
+      "type": "bash",
+      "cmd": "uptime",
+      "output": " 23:31:44 up 14 min,  1 user,  load average: 3,31, 3,09, 1,91\n",
+      "ts": 1769121104201
+    },
+    {
+      "type": "bash",
+      "cmd": "df -h",
+      "output": "Sys. de fichiers Taille Utilisé Dispo Uti% Monté sur\n/dev/nvme0n1p4     233G     23G  207G  10% /\ndevtmpfs            16G       0   16G   0% /dev\ntmpfs               16G    2,4M   16G   1% /dev/shm\nefivarfs           148K     76K   68K  53% /sys/firmware/efi/efivars\ntmpfs              6,2G    2,3M  6,2G   1% /run\nnone               1,0M       0  1,0M   0% /run/credentials/systemd-journald.service\n/dev/nvme0n1p4     233G     23G  207G  10% /.snapshots\n/dev/nvme0n1p7     772G    5,9M  770G   1% /a",
+      "ts": 1769121194233
+    },
+    {
+      "type": "read",
+      "path": "/home/flow/projects/gaia/phoenix/src/systems/flow-pure.js",
+      "ts": 1769121224211
+    },
+    {
+      "type": "fetch",
+      "url": "https://news.ycombinator.com",
+      "ts": 1769121254834
+    },
+    {
+      "type": "read",
+      "path": "/home/flow/projects/gaia/phoenix/src/systems/flow-pure.js",
+      "ts": 1769121284212
+    },
+    {
+      "type": "fetch",
+      "url": "https://news.ycombinator.com",
+      "ts": 1769121344853
+    }
+  ],
+  "dreams": [
+    {
+      "id": "dream-1769120954172",
+      "seed": 0.18328246151434258,
+      "html": "<!DOCTYPE html>\n<html><head><meta charset=\"UTF-8\"><title>Flow Dream</title>\n<style>\n*{margin:0;padding:0}\nbody{background:#000;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}\n.d{width:200px;height:200px;background:linear-gradient(65.98168614516332deg,#0ff,#0ff);border-radius:50%;animation:p 2s infinite,r 2.549847384543028s linear infinite;box-shadow:0 0 50px #0ff}\n@keyframes p{0%,100%{transform:scale(1)}50%{transform:scale(1.3)}}\n@keyframes r{to{transform:rotate(360deg)}}\n</style></head>\n<body><div class=\"d\"></div></body></html>",
+      "timestamp": 1769120954172
+    }
+  ],
+  "saved": 1769121353901
+}

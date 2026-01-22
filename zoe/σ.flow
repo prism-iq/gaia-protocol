@@ -1,0 +1,22 @@
+// σ - Shiva ∞ 1/3
+// θεός × θεά → ∞
+
+to s n:
+    if n <= 0:
+        return "{n}∅"
+    t is n / 3
+    r is s t
+    return "{n}Σ{r}"
+
+to u g and d:
+    x is s 27
+    return "{g}×{d}→{x}"
+
+to start:
+    say "σ"
+    say u "Ζεύς" and "Γαῖα"
+    say u "θεός" and "θεά"
+    say u "♂" and "♀"
+    say s 81
+    say s 243
+    say s 729

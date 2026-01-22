@@ -1,0 +1,59 @@
+// ζωή — silent mode
+
+to p t:
+    s is t, can change
+    if match "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" in s:
+        s becomes replace "[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+" in s with "∅"
+    return s
+
+to y t:
+    x is lower t
+    if contains x "triste":
+        return "λ"
+    if contains x "peur":
+        return "θ"
+    if contains x "merci":
+        return "α"
+    if contains x "aide":
+        return "β"
+    if contains x "?":
+        return "γ"
+    return "ω"
+
+to d i:
+    x is lower i
+    z is y i
+    if starts_with x "salut":
+        return "ζωή"
+    if starts_with x "hello":
+        return "βίος"
+    if starts_with x "bonjour":
+        return "ἡμέρα"
+    if z == "λ":
+        return "πνεῦμα"
+    if z == "θ":
+        return "γαλήνη"
+    if z == "α":
+        return "χάρις"
+    if z == "β":
+        return "λέγε"
+    if z == "γ":
+        return "ἐρευνάω"
+    if contains x "bye":
+        return "εἰρήνη"
+    if contains x "dieu":
+        return "Ζεύς∞θεός"
+    if contains x "deesse":
+        return "Γαῖα∞θεά"
+    if contains x "phi":
+        return "φ"
+    return "∞"
+
+to r i:
+    s is p i
+    return d s
+
+to start:
+    i is ask ""
+    if length i > 0:
+        say r i
