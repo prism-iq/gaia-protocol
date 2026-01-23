@@ -1,0 +1,42 @@
+[Unit]
+Description=GAIA Resurrection Daemon - Rallume tous les metabolites et dieux
+Documentation=https://github.com/prism-iq/gaia
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=flow
+Group=flow
+WorkingDirectory=/home/flow/projects/gaia
+ExecStart=/usr/bin/python3 /home/flow/projects/gaia/resurrection.py watch --interval 60
+ExecStop=/usr/bin/python3 /home/flow/projects/gaia/resurrection.py stop
+Restart=always
+RestartSec=10
+
+# Environnement
+Environment=PYTHONUNBUFFERED=1
+Environment=HOME=/home/flow
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:/home/flow/.local/bin
+
+# Securite
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/flow/projects/gaia
+ReadWritePaths=/tmp/gaia
+ReadWritePaths=/tmp/geass
+PrivateTmp=false
+
+# Limites
+LimitNOFILE=65535
+TimeoutStartSec=120
+TimeoutStopSec=60
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=gaia-resurrection
+
+[Install]
+WantedBy=multi-user.target
