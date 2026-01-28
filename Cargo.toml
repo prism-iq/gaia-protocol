@@ -1,0 +1,23 @@
+[package]
+name = "gaia-protocol"
+version = "3.0.0"
+edition = "2021"
+authors = ["Nyx Daemon"]
+description = "La Terre - Pantheon benchmarking daemon, ground truth for PRISM-IQ"
+license = "GPL-3.0"
+
+[[bin]]
+name = "gaia"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1.44", features = ["full", "process", "fs", "io-util", "signal"] }
+axum = "0.8"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+chrono = { version = "0.4", features = ["serde"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls"] }
+sysinfo = "0.33"
+tower-http = { version = "0.6", features = ["cors"] }
